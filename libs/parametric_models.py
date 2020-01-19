@@ -150,7 +150,7 @@ class MulLayer(nn.Module):
         self.unzip = nn.Conv2d(matrixSize,int(256*W),1,1,0)
         self.transmatrix = None
 
-    def forward(self, cF, sF, alpha, trans=True):
+    def forward(self, cF, sF, alpha=1.0, trans=True):
 
         #cFBK = cF.clone()
         #cb, cc, ch, cw = cF.size()

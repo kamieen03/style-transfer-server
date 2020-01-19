@@ -50,7 +50,7 @@ class MulLayer(nn.Module):
             self.unzip = nn.Conv2d(matrixSize,256,1,1,0)
         self.transmatrix = None
 
-    def forward(self, cF,sF,n,alpha=1.0,trans=True):
+    def forward(self, cF,sF,alpha=1.0,trans=True):
         #cFBK = cF.clone()
         sF = alpha*sF + (1-alpha)*cF
         cb,cc,ch,cw = cF.size()
