@@ -88,7 +88,7 @@ class StyleTransfer:
                 int(self.d_matrix_out)], stream_handle=self.stream.handle)
         # pass transformed features throgh decoder
         with self.decoder_engine.create_execution_context() as context:
-            context.execute_async(bindings=[int(self.d_matrix_out), int(self.d_decoder_out)], stream_handle=self.stream.handle)
+            context.execute_async(bindings=[int(self.d_vgg_content_out*(1-self.d_alpha) + self.d_alpha * self.d_matrix_out), int(self.d_decoder_out)], stream_handle=self.stream.handle)
         # move stylized picture to host memory
         cuda.memcpy_dtoh_async(self.h_decoder_out, self.d_decoder_out, self.stream)
         self.stream.synchronize()
